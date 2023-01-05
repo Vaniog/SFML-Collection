@@ -13,5 +13,11 @@ endif (WIN32)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-add_executable(SFML-Collection main.cpp)
+file(GLOB SFML-Collection_SRC
+        "*.h"
+        "*.cpp"
+        )
+
+add_executable(SFML-Collection ${SFML-Collection_SRC})
+
 target_link_libraries(SFML-Collection sfml-graphics sfml-audio)
