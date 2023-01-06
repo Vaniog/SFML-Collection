@@ -17,7 +17,7 @@ include_directories(Scene Scene/SceneTools)
 
 add_executable(${PROJECT_NAME} main.cpp
         Projects/GetSceneByName.h
-        Projects/CircleViewer/CircleViewer.h Projects/CircleViewer/CircleViewer.cpp
+        Projects/CircleViewer/CircleViewer.h
         Projects/SquareViewer/SquareViewer.h Projects/SquareViewer/SquareViewer.cpp
         )
 
