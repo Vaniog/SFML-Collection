@@ -72,7 +72,7 @@ void SceneCollection::MenuOnFrame(const Timer& timer) {
 void SceneCollection::ReloadSprite() {
     auto cover_path = std::filesystem::current_path() / "Projects" / scene_names_[cur_scene_index_] / "cover.png";
     if (std::filesystem::exists(cover_path)) {
-        cur_scene_texture_.loadFromFile(cover_path);
+        cur_scene_texture_.loadFromFile(cover_path.string());
     }
 
     cur_scene_sprite_.setTexture(cur_scene_texture_);
