@@ -19,6 +19,9 @@ private:
     bool cur_scene_changed_;
     std::shared_ptr<ProjectCover> old_cover_;
     std::shared_ptr<ProjectCover> cover_;
+    sf::Font font_;
+    sf::Text help_text_;
+    float char_size_ = 0.02;
 
     void ReloadCover();
 };

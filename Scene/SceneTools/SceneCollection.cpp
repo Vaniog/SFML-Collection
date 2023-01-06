@@ -31,13 +31,13 @@ void SceneCollection::MainCycle(sf::RenderWindow& window) {
         timer.Update();
 
         cur_scene_->OnFrame(timer);
-        cur_scene_->OnDraw(window);
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed || closed_)
                 window.close();
             cur_scene_->OnEvent(event, timer);
             OnEvent(event, timer);
         }
+        cur_scene_->OnDraw(window);
 
         window.display();
     }

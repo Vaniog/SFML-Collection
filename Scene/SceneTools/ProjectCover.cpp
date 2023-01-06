@@ -14,7 +14,10 @@ ProjectCover::ProjectCover(const std::string& name) {
     }
 
     sprite_.setTexture(texture_);
-    sprite_.setTextureRect(sf::IntRect(0, 0, texture_.getSize().x, texture_.getSize().y));
+    sprite_.setTextureRect(sf::IntRect(0,
+                                       0,
+                                       static_cast<int32_t>(texture_.getSize().x),
+                                       static_cast<int32_t>(texture_.getSize().y)));
     text_.setString(name_);
     FixSizes();
 }
@@ -31,7 +34,7 @@ void ProjectCover::FixSizes() {
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2, sprite_.getLocalBounds().height / 2);
     sprite_.setPosition(pos_.x, pos_.y);
 
-    text_.setCharacterSize(window_size_.y * char_size_);
+    text_.setCharacterSize(static_cast<uint32_t>(window_size_.y * char_size_));
     text_.setOrigin(text_.getGlobalBounds().width / 2, text_.getGlobalBounds().height / 2);
     text_.setPosition(pos_.x, pos_.y + sprite_.getGlobalBounds().height / 2 + window_size_.y * char_size_);
 }
@@ -51,7 +54,7 @@ void ProjectCover::MoveTo(float x, float y, float duration_secs) {
 void ProjectCover::OnFrame(const Timer& timer) {
     if (move_duration_ == 0)
         return;
-    move_duration_pass_ += timer.GetDelta();
+    move_duration_pass_ += static_cast<float>(timer.GetDelta());
     if (move_duration_pass_ > move_duration_) {
         move_duration_pass_ = 0;
         move_duration_ = 0;
