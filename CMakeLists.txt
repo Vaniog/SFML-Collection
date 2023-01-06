@@ -16,14 +16,19 @@ find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 include_directories(Scene Scene/SceneTools)
 
 add_executable(${PROJECT_NAME} main.cpp
+        Scene/Scene.cpp
+        Scene/SceneTools/SceneCollection.cpp
+        Scene/SceneTools/MenuScene.cpp
+        Scene/SceneTools/ProjectCover.cpp
+        Scene/SceneTools/Timer.cpp
+
         Projects/GetSceneByName.h
+
         Projects/CircleViewer/CircleViewer.h
-        Projects/SquareViewer/SquareViewer.h Projects/SquareViewer/SquareViewer.cpp
+
+        Projects/SquareViewer/SquareViewer.cpp Projects/SquareViewer/SquareViewer.h
+
         )
 
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
-add_subdirectory(Scene)
-target_link_libraries(${PROJECT_NAME} scene)
-add_subdirectory(Projects)
-target_link_libraries(${PROJECT_NAME} projects)
