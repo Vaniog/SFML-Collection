@@ -11,7 +11,7 @@ your own class inherited from the Scene class, and design it by rules:
 1. **Make a fork project to work with**
 2. **Create a folder in "Projects" folder with the name of your project**
 3. **Implement class inherited from [Scene](#scene)**
-4. **Write all your files to Projects/CMakeLists.txt**
+4. **Write all your files to CMakeLists.txt**
 5. **Add method to return your class by name in Projects/GetSceneByName.h**
 6. **Add cover to your Project: Projects/YOUR_PROJECT_NAME/cover.png**
 7. **Create pull request**
@@ -57,11 +57,16 @@ Something like (simplified):
 
 ## Example of contributing
 ### Make a fork project to work with
+without example
 ### Create a folder in "Projects" folder with the name of your project
+![img](Resources/ForReadme_1.png)
 ### Implement class inherited from Scene
+![img](Resources/ForReadme_2.png)
 ### Write all your files to Projects/CMakeLists.txt
+![img](Resources/ForReadme_3.png)
 ### Add method to return your class by name in Projects/GetSceneByName.h
+![img](Resources/ForReadme_4.png)
 ### Add cover to your Project: Projects/YOUR_PROJECT_NAME/cover.png
+![img](Resources/ForReadme_5.png)
 ### Create pull request
-
-
+without example
