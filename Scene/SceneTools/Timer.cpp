@@ -11,10 +11,12 @@ void Timer::Update() {
                     std::chrono::steady_clock::now() - last_update_time_);
     last_update_time_ = std::chrono::steady_clock::now();
 }
-uint64_t Timer::GetDelta() const {
-    return delta_time_.count();
+double Timer::GetDelta() const {
+    return static_cast<double>(delta_time_.count()) / 1000000.0;
 }
-uint64_t Timer::GetTime() const {
-    return std::chrono::duration_cast<std::chrono::microseconds>(
-            last_update_time_.time_since_epoch()).count();
+
+double Timer::GetTime() const {
+    return static_cast<double>(
+            std::chrono::duration_cast<std::chrono::microseconds>(
+            last_update_time_.time_since_epoch()).count()) / 1000000.0;
 }
