@@ -1,8 +1,11 @@
 #pragma once
-#include "SFML/Window.hpp"
+#include "SFML/Graphics.hpp"
+#include "SceneTools/Timer.h"
 
 class Scene {
-    virtual void onFrame() = 0;
-    virtual void onDraw(sf::Window& window) = 0;
-    virtual void onEvent(sf::Event& event) = 0;
+public:
+    virtual ~Scene() {}
+    virtual void OnFrame(const Timer& timer) = 0;
+    virtual void OnDraw(sf::RenderWindow& window) = 0;
+    virtual void OnEvent(sf::Event& event, const Timer& timer) = 0;
 };

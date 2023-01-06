@@ -8,9 +8,9 @@ public:
     /// update delta_time and time
     void Update();
     /// \return time, passed between last two updates;
-    uint64_t GetDelta();
+    [[nodiscard]] uint64_t GetDelta() const;
     /// \return time, passed from timer start
-    uint64_t GetTime();
+    [[nodiscard]] uint64_t GetTime() const;
 private:
     std::chrono::time_point<std::chrono::steady_clock> start_time_;
     std::chrono::time_point<std::chrono::steady_clock> last_update_time_;

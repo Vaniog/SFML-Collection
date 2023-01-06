@@ -13,11 +13,14 @@ endif (WIN32)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-file(GLOB SFML-Collection_SRC
-        "*.h"
-        "*.cpp"
-        )
+include_directories(Scene Scene/SceneTools)
 
-add_executable(SFML-Collection ${SFML-Collection_SRC})
+add_executable(SFML-Collection main.cpp
+        Scene/Scene.h
+        Scene/SceneTools/SceneCollection.h Scene/SceneTools/SceneCollection.cpp
+        Scene/SceneTools/Timer.h Scene/SceneTools/Timer.cpp
+        Projects/GetSceneByName.h
+        Projects/CircleViewer/CircleViewer.h Projects/CircleViewer/CircleViewer.cpp
+        )
 
 target_link_libraries(SFML-Collection sfml-graphics sfml-audio)
