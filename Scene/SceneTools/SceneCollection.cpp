@@ -16,7 +16,7 @@ void SceneCollection::FillSceneNames() {
     std::filesystem::path projects_root = std::filesystem::current_path() / "Projects";
     for (auto const& dir_entry : std::filesystem::directory_iterator(projects_root)) {
         if (dir_entry.is_directory()) {
-            scene_names_.push_back(dir_entry.path().filename());
+            scene_names_.push_back(dir_entry.path().filename().string());
         }
     }
 }
@@ -71,8 +71,9 @@ void SceneCollection::MenuOnFrame(const Timer& timer) {
 
 void SceneCollection::ReloadSprite() {
     auto cover_path = std::filesystem::current_path() / "Projects" / scene_names_[cur_scene_index_] / "cover.png";
-    if (std::filesystem::exists(cover_path))
+    if (std::filesystem::exists(cover_path)) {
         cur_scene_texture_.loadFromFile(cover_path);
+    }
 
     cur_scene_sprite_.setTexture(cur_scene_texture_);
 }
