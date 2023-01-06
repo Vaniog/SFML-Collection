@@ -4,7 +4,7 @@
 ProjectCover::ProjectCover(const std::string& name) {
     name_ = name;
 
-    font_.loadFromFile("Scene/SceneTools/Resources/MenuFont.ttf");
+    font_.loadFromFile("Resources/MenuFont.ttf");
     text_.setFont(font_);
     text_.setFillColor(sf::Color::White);
 

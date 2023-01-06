@@ -17,21 +17,21 @@ jobs:
         - name: "Windows Latest MinGW"
           os: windows-latest
           artifact: "windows.zip"
-          to_pack: SFML-Collection.exe
+          to_pack: SFML-Collection.exe *cover.png *Resources*
           build_type: "Release"
           cc: "gcc"
           cxx: "g++"
-          archiver: "7z a"
+          archiver: "7z a -r"
           generators: "Ninja"
           sfml_build: SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit
         - name: "Linux"
           os: ubuntu-latest
           artifact: "linux.zip"
-          to_pack: SFML-Collection
+          to_pack: SFML-Collection *cover.png *Resources*
           build_type: "Release"
           cc: "gcc"
           cxx: "g++"
-          archiver: "7z a"
+          archiver: "7z a -r"
           generators: "Ninja"
         
     steps:
