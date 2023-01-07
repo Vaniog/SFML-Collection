@@ -24,10 +24,14 @@ add_executable(${PROJECT_NAME} main.cpp
 
         Projects/GetSceneByName.h
 
+        # Circle Viewer
         Projects/CircleViewer/CircleViewer.h
 
+        # Square Viewer
         Projects/SquareViewer/SquareViewer.cpp Projects/SquareViewer/SquareViewer.h
 
+        # Snake
+        Projects/SnakeGame/SnakeScene.cpp Projects/SnakeGame/SnakeScene.h
         )
 
 
