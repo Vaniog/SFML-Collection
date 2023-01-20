@@ -32,6 +32,12 @@ add_executable(${PROJECT_NAME} main.cpp
 
         # Snake
         Projects/SnakeGame/SnakeScene.cpp Projects/SnakeGame/SnakeScene.h
+
+        # mandlebrotSet
+        Projects/mandlebrotSet/mandlebrotSet.cpp Projects/mandlebrotSet/mandlebrotSet.h
+
+        # abs difference
+        Projects/abs_difference/abs_difference.h
         )
 
 

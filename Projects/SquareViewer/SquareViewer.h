@@ -3,7 +3,7 @@
 #include "Scene.h"
 
 class SquareViewer : public Scene {
-public:
+public: 
     void OnFrame(const Timer& timer) override;
     void OnDraw(sf::RenderWindow& window) override;
     void OnEvent(sf::Event& event, const Timer& timer) override {};

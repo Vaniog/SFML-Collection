@@ -3,6 +3,8 @@
 #include "CircleViewer/CircleViewer.h"
 #include "SquareViewer/SquareViewer.h"
 #include "SnakeGame/SnakeScene.h"
+#include "abs_difference/abs_difference.h"
+#include "mandlebrotSet/mandlebrotSet.h"
 #include <memory>
 #include <stdexcept>
 
@@ -13,6 +15,10 @@ std::shared_ptr<Scene> GetSceneByName(const std::string& scene_name) {
         return std::shared_ptr<Scene>(new SquareViewer());
     } else if (scene_name == "SnakeGame") {
         return std::shared_ptr<Scene>(new SnakeScene());
+    } else if (scene_name == "abs_difference"){
+        return std::shared_ptr<Scene>(new abs_difference());
+    } else if (scene_name == "mandlebrotSet"){
+        return std::shared_ptr<Scene>(new mandlebrotSet());
     }
 
     throw (std::runtime_error("You didn't add your scene to Projects/GetSceneByName"));
