@@ -7,7 +7,7 @@ float Remap(float value, float inputStart, float inputEnd, float outputStart, fl
     float result = (value - inputStart)/(inputEnd - inputStart)*(outputEnd - outputStart) + outputStart;
 
     return result;
-}
+} 
 
 class abs_difference : public Scene {
 public:
