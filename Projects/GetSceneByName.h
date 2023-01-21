@@ -5,6 +5,7 @@
 #include "SnakeGame/SnakeScene.h"
 #include "abs_difference/abs_difference.h"
 #include "mandlebrotSet/mandlebrotSet.h"
+#include "domain_warping/domain_warping.h"
 #include <memory>
 #include <stdexcept>
 
@@ -19,6 +20,8 @@ std::shared_ptr<Scene> GetSceneByName(const std::string& scene_name) {
         return std::shared_ptr<Scene>(new abs_difference());
     } else if (scene_name == "mandlebrotSet"){
         return std::shared_ptr<Scene>(new mandlebrotSet());
+    } else if (scene_name == "domain_warping"){
+        return std::shared_ptr<Scene>(new domain_warping());
     }
 
     throw (std::runtime_error("You didn't add your scene to Projects/GetSceneByName"));

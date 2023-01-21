@@ -38,6 +38,9 @@ add_executable(${PROJECT_NAME} main.cpp
 
         # abs difference
         Projects/abs_difference/abs_difference.h
+
+        # domain_warping
+        Projects/domain_warping/domain_warping.cpp Projects/domain_warping/domain_warping.h
         )
 
 

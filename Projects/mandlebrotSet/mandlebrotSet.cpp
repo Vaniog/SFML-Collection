@@ -3,9 +3,9 @@
 mandlebrotSet::mandlebrotSet(){
 	texture.create(width, height);
     sprite.setTexture(texture);
-    gradiant.loadFromFile("Resources/gradient.png");
-
     sprite.setPosition(window_size_.x/2-width/2, window_size_.y/2-height/2);
+    gradiant.loadFromFile("Resources/gradient.jpg");
+
 
     font.loadFromFile("Resources/MenuFont.ttf");
 
@@ -52,7 +52,7 @@ void mandlebrotSet::campute_set() {
             }else {
             		//HUE COLORING
                 float hue = floor(Remap(iter_nbr,0,iteration,0,gradiant.getSize().x));
-                sf::Color color = gradiant.getPixel(hue, 0);
+                sf::Color color = gradiant.getPixel(hue, floor(gradiant.getSize().y*0.4));
 
                 pixels[index+0] = color.r;
                 pixels[index+1] = color.g;
