@@ -9,6 +9,14 @@ mandlebrotSet::mandlebrotSet(){
     gradiant.loadFromFile("Resources/gradient.png");
 
     sprite.setPosition(window_size_.x/2-width/2, window_size_.y/2-height/2);
+    
+    font.loadFromFile("Recources/MenuFont.ttf");
+
+    controls.setFont(font);
+    controls.setString("click to zoom");
+    controls.setCharacterSize(24);
+    controls.setFillColor(sf::Color::White);
+    controls.setPosition(0, 0);
 };
 
 int mandlebrotSet::is_in_set(std::complex<double> c) {
@@ -110,6 +118,8 @@ void mandlebrotSet::OnDraw(sf::RenderWindow& window) {
 	texture.update(pixels);
 	sprite.setTexture(texture);
 	window.draw(sprite);
+
+    window.draw(controls);
 
     mouse_window_pos = sf::Mouse::getPosition(window);
 };

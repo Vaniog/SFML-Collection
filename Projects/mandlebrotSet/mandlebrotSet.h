@@ -15,8 +15,8 @@ private:
     int is_in_set(std::complex<double> c);
     void campute_set();
 
-    int width = floor(fmin(window_size_.x, window_size_.y)/2);
-    int height = floor(fmin(window_size_.x, window_size_.y)/2);
+    int width = floor(fmin(window_size_.x, window_size_.y)/1.2);
+    int height = floor(fmax(window_size_.x, window_size_.y)/2);
 
     sf::Vector2i mouse_window_pos;
 
@@ -41,5 +41,6 @@ private:
     sf::Sprite sprite;
     sf::Image gradiant;
 
-
+    sf::Font font;
+    sf::Text controls;
 };
