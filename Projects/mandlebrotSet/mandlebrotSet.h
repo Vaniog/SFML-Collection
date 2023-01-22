@@ -11,12 +11,13 @@ public:
     void OnFrame(const Timer& timer) override{};
     void OnDraw(sf::RenderWindow& window) override;
     void OnEvent(sf::Event& event, const Timer& timer) override;
+    ~mandlebrotSet(){delete[] pixels;}
 private:
     int is_in_set(std::complex<double> c);
     void campute_set();
 
-    int width = floor(fmin(window_size_.x, window_size_.y)/2);
-    int height = floor(fmin(window_size_.x, window_size_.y)/2);
+    int width = floor(fmax(window_size_.x, window_size_.y)/2);
+    int height = floor(fmin(window_size_.x, window_size_.y)/1.6);
 
     sf::Vector2i mouse_window_pos;
 
@@ -41,5 +42,8 @@ private:
     sf::Sprite sprite;
     sf::Image gradiant;
 
-
+    sf::Font font;
+    sf::Text controls;
+    sf::Text iteration_count;
+    float text_size = window_size_.y * 0.028;
 };

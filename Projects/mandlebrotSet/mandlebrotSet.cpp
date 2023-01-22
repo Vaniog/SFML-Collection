@@ -1,14 +1,25 @@
 #include "mandlebrotSet.h"
 
 mandlebrotSet::mandlebrotSet(){
-	width = floor(fmin(window_size_.x, window_size_.y)/2);
-	height = floor(fmin(window_size_.x, window_size_.y)/2);
-
 	texture.create(width, height);
     sprite.setTexture(texture);
-    gradiant.loadFromFile("Resources/gradient.png");
-
     sprite.setPosition(window_size_.x/2-width/2, window_size_.y/2-height/2);
+    gradiant.loadFromFile("Resources/gradient.jpg");
+
+
+    font.loadFromFile("Resources/MenuFont.ttf");
+
+    controls.setFont(font);
+    controls.setString("click to zoom, arrows to control precision, entre to render");
+    controls.setCharacterSize(text_size);
+    controls.setFillColor(sf::Color::White);
+    controls.setPosition(0, 0);
+
+    iteration_count.setFont(font);
+    iteration_count.setString("iteration : " + std::to_string(iteration));
+    iteration_count.setCharacterSize(text_size);
+    iteration_count.setFillColor(sf::Color::White);
+    iteration_count.setPosition(0, window_size_.y - 1.5*text_size);
 };
 
 int mandlebrotSet::is_in_set(std::complex<double> c) {
@@ -41,7 +52,7 @@ void mandlebrotSet::campute_set() {
             }else {
             		//HUE COLORING
                 float hue = floor(Remap(iter_nbr,0,iteration,0,gradiant.getSize().x));
-                sf::Color color = gradiant.getPixel(hue, 0);
+                sf::Color color = gradiant.getPixel(hue, floor(gradiant.getSize().y*0.4));
 
                 pixels[index+0] = color.r;
                 pixels[index+1] = color.g;
@@ -95,11 +106,13 @@ void mandlebrotSet::OnEvent(sf::Event& event, const Timer& timer) {
     	}
 	}
 	//iteration count control
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && iteration >= 0){
 	    iteration += 20;
+        iteration_count.setString("iteration : " + std::to_string(iteration));
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)){
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && iteration > 0){
 	    iteration -= 20;
+        iteration_count.setString("iteration : " + std::to_string(iteration));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
 	    campute_set();
@@ -110,6 +123,9 @@ void mandlebrotSet::OnDraw(sf::RenderWindow& window) {
 	texture.update(pixels);
 	sprite.setTexture(texture);
 	window.draw(sprite);
+
+    window.draw(controls);
+    window.draw(iteration_count);
 
     mouse_window_pos = sf::Mouse::getPosition(window);
 };

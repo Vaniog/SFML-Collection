@@ -26,6 +26,7 @@ void SceneCollection::MainCycle(sf::RenderWindow& window) {
     Timer timer;
     sf::Event event{};
     window.setFramerateLimit(60);
+    window.setMouseCursorVisible(true);
     while (window.isOpen()) {
         window.clear();
         timer.Update();
