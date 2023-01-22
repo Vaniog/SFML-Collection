@@ -6,6 +6,7 @@
 #include "abs_difference/abs_difference.h"
 #include "mandlebrotSet/mandlebrotSet.h"
 #include "domain_warping/domain_warping.h"
+#include "blob/blob.h"
 #include <memory>
 #include <stdexcept>
 
@@ -22,6 +23,8 @@ std::shared_ptr<Scene> GetSceneByName(const std::string& scene_name) {
         return std::shared_ptr<Scene>(new mandlebrotSet());
     } else if (scene_name == "domain_warping"){
         return std::shared_ptr<Scene>(new domain_warping());
+    } else if (scene_name == "blob"){
+        return std::shared_ptr<Scene>(new blob());
     }
 
     throw (std::runtime_error("You didn't add your scene to Projects/GetSceneByName"));

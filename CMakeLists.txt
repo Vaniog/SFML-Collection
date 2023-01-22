@@ -41,6 +41,9 @@ add_executable(${PROJECT_NAME} main.cpp
 
         # domain_warping
         Projects/domain_warping/domain_warping.cpp Projects/domain_warping/domain_warping.h
+
+        # blob
+        Projects/blob/blob.cpp Projects/blob/blob.h
         )
 
 

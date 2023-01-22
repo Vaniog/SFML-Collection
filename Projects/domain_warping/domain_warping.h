@@ -15,7 +15,10 @@ private:
     const int width = floor(fmax(window_size_.x, window_size_.y)/2);
     const int height = floor(fmin(window_size_.x, window_size_.y)/1.6);
 
-    float scale = 4;
+    float noise_resolution = 10;
+    float noise_speed = 0;
+    float warping_resolution = 12;
+    float warping_speed = 26;
     int warping_implitude = 20;
     int cell_size = 3;
 
@@ -33,4 +36,6 @@ private:
 
     sf::Font font;
     sf::Text controls;
+    sf::Text parametres;
+    float text_size = window_size_.y * 0.028;
 };

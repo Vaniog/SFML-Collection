@@ -11,15 +11,15 @@ mandlebrotSet::mandlebrotSet(){
 
     controls.setFont(font);
     controls.setString("click to zoom, arrows to control precision, entre to render");
-    controls.setCharacterSize(24);
+    controls.setCharacterSize(text_size);
     controls.setFillColor(sf::Color::White);
     controls.setPosition(0, 0);
 
     iteration_count.setFont(font);
     iteration_count.setString("iteration : " + std::to_string(iteration));
-    iteration_count.setCharacterSize(24);
+    iteration_count.setCharacterSize(text_size);
     iteration_count.setFillColor(sf::Color::White);
-    iteration_count.setPosition(0, window_size_.y - 24);
+    iteration_count.setPosition(0, window_size_.y - 1.5*text_size);
 };
 
 int mandlebrotSet::is_in_set(std::complex<double> c) {
