@@ -42,7 +42,7 @@ void MenuScene::OnEvent(sf::Event& event, const Timer& timer) {
     }
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) {
         cur_scene_index_--;
-        cur_scene_index_ %= scene_names_.size();
+        cur_scene_index_ = (cur_scene_index_ + scene_names_.size()) % scene_names_.size();
         cur_scene_changed_ = true;
     }
 }

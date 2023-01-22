@@ -15,7 +15,7 @@ public:
 private:
     void FillSceneNames();
     std::vector<std::string> scene_names_;
-    uint32_t cur_scene_index_;
+    int32_t cur_scene_index_;
     bool cur_scene_changed_;
     std::shared_ptr<ProjectCover> old_cover_;
     std::shared_ptr<ProjectCover> cover_;
