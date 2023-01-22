@@ -11,6 +11,7 @@ public:
     void OnFrame(const Timer& timer) override{};
     void OnDraw(sf::RenderWindow& window) override;
     void OnEvent(sf::Event& event, const Timer& timer) override;
+    ~mandlebrotSet(){delete[] pixels;}
 private:
     int is_in_set(std::complex<double> c);
     void campute_set();

@@ -39,6 +39,7 @@ public:
         window.draw(sprite);
     };
     void OnEvent(sf::Event& event, const Timer& timer) override {};
+    ~abs_difference(){delete[] pixels;}
 private:
 	sf::Texture texture;
     sf::Sprite sprite;
