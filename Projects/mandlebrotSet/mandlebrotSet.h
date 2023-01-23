@@ -3,8 +3,6 @@
 #include <complex>
 #include <cmath>
 
-float Remap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd);
-
 class mandlebrotSet : public Scene {
 public: 
     mandlebrotSet();
@@ -45,5 +43,5 @@ private:
     sf::Font font;
     sf::Text controls;
     sf::Text iteration_count;
-    float text_size = window_size_.y * 0.028;
+    double text_size = window_size_.y * 0.028;
 };
