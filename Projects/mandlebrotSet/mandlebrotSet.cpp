@@ -59,7 +59,7 @@ void mandlebrotSet::campute_set() {
                 pixels[index] = pixels[index+1] =pixels[index+2] = 0;
             }else {
             		//HUE COLORING
-                double hue = floor(RemapD(iter_nbr, 0, iteration, 0, gradiant.getSize().x));
+                float hue = floor(RemapD(iter_nbr, 0, iteration, 0, gradiant.getSize().x));
                 sf::Color color = gradiant.getPixel(hue, floor(gradiant.getSize().y*0.4));
 
                 pixels[index+0] = color.r;

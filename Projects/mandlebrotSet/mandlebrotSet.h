@@ -43,5 +43,5 @@ private:
     sf::Font font;
     sf::Text controls;
     sf::Text iteration_count;
-    double text_size = window_size_.y * 0.028;
+    float text_size = window_size_.y * 0.028;
 };
