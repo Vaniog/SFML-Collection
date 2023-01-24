@@ -1,5 +1,13 @@
 #include "mandlebrotSet.h"
 
+double RemapD(double value, double inputStart, double inputEnd, double outputStart, double outputEnd)
+{
+    double result = (value - inputStart)/(inputEnd - inputStart)*(outputEnd - outputStart) + outputStart;
+
+    return result;
+}
+
+
 mandlebrotSet::mandlebrotSet(){
 	texture.create(width, height);
     sprite.setTexture(texture);
@@ -37,8 +45,8 @@ int mandlebrotSet::is_in_set(std::complex<double> c) {
 void mandlebrotSet::campute_set() {
     for (int i = 0; i < width; ++i){
         for (int j = 0; j < height; ++j){
-            double x = Remap(i,0,width,startx, endx);
-            double y = Remap(j,0,height,starty, endy);
+            double x = RemapD(i, 0, width, startx, endx);
+            double y = RemapD(j, 0, height, starty, endy);
 
             std::complex<double> nbr (x, y);
 
@@ -51,7 +59,7 @@ void mandlebrotSet::campute_set() {
                 pixels[index] = pixels[index+1] =pixels[index+2] = 0;
             }else {
             		//HUE COLORING
-                float hue = floor(Remap(iter_nbr,0,iteration,0,gradiant.getSize().x));
+                float hue = floor(RemapD(iter_nbr, 0, iteration, 0, gradiant.getSize().x));
                 sf::Color color = gradiant.getPixel(hue, floor(gradiant.getSize().y*0.4));
 
                 pixels[index+0] = color.r;
@@ -60,11 +68,11 @@ void mandlebrotSet::campute_set() {
 
                     // SQRT COLORING
 
-                // float bright = Remap(iter_nbr,0,iteration,0,1);
+                // double bright = Remap(iter_nbr,0,iteration,0,1);
                 // pixels[index] = pixels[index+1] =pixels[index+2] = Remap(sqrt(bright),0,1,0,255);
 
                     //  smt related to hue?
-                // float hue = (iter_nbr / 1 ) - floor(iter_nbr / 1);
+                // double hue = (iter_nbr / 1 ) - floor(iter_nbr / 1);
                 // color::hsv<double> h( { hue, 80, 50 } );
                 // color::rgb<double> r;
                 // r = h;
@@ -85,16 +93,25 @@ void mandlebrotSet::OnEvent(sf::Event& event, const Timer& timer) {
 		if (mouse_window_pos.x>(window_size_.x/2 - width/2) && mouse_window_pos.x<(window_size_.x/2 + width/2) &&
 			mouse_window_pos.y>(window_size_.y/2 - height/2) && mouse_window_pos.y<(window_size_.y/2 + height/2))
 		{
-	    sf::Vector2i mouse_pos = sf::Vector2i(Remap(mouse_window_pos.x,(window_size_.x/2 - width/2),(window_size_.x/2 + width/2),0,width)
-                                             ,Remap(mouse_window_pos.y,(window_size_.y/2 - height/2),(window_size_.y/2 + height/2),0,height));
+	    sf::Vector2i mouse_pos = sf::Vector2i(RemapD(mouse_window_pos.x,
+                                                     (window_size_.x / 2 - width / 2),
+                                                     (window_size_.x / 2 + width / 2),
+                                                     0,
+                                                     width)
+                                             ,
+                                              RemapD(mouse_window_pos.y,
+                                                     (window_size_.y / 2 - height / 2),
+                                                     (window_size_.y / 2 + height / 2),
+                                                     0,
+                                                     height));
 
-        new_startx = Remap(mouse_pos.x - zoom_width/2,0,width,startx, endx);
+        new_startx = RemapD(mouse_pos.x - zoom_width / 2, 0, width, startx, endx);
         // std::cout << std::to_string(new_startx) + " ";
-        new_endx = Remap(mouse_pos.x + zoom_width/2,0,width,startx, endx);
+        new_endx = RemapD(mouse_pos.x + zoom_width / 2, 0, width, startx, endx);
         // std::cout << std::to_string(new_endx) + " \n";
-        new_starty = Remap(mouse_pos.y - zoom_height/2,0,height,starty, endy);
+        new_starty = RemapD(mouse_pos.y - zoom_height / 2, 0, height, starty, endy);
         // std::cout << std::to_string(new_starty) + " ";
-       new_endy = Remap(mouse_pos.y + zoom_height/2,0,height,starty, endy);
+       new_endy = RemapD(mouse_pos.y + zoom_height / 2, 0, height, starty, endy);
        // std::cout << std::to_string(endx) + " \n";
 
 		startx = new_startx;

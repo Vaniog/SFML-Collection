@@ -3,8 +3,6 @@
 #include <complex>
 #include <cmath>
 
-float Remap(float value, float inputStart, float inputEnd, float outputStart, float outputEnd);
-
 class mandlebrotSet : public Scene {
 public: 
     mandlebrotSet();
