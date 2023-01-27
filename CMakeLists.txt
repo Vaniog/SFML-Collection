@@ -18,6 +18,7 @@ include_directories(Scene Scene/SceneTools)
 add_executable(${PROJECT_NAME} main.cpp
         Scene/Scene.cpp
         Scene/SceneTools/SceneCollection.cpp
+        Scene/SceneTools/DirScene.cpp
         Scene/SceneTools/MenuScene.cpp
         Scene/SceneTools/ProjectCover.cpp
         Scene/SceneTools/Timer.cpp
@@ -34,7 +35,7 @@ add_executable(${PROJECT_NAME} main.cpp
         Projects/SnakeGame/SnakeScene.cpp Projects/SnakeGame/SnakeScene.h
 
         # mandlebrotSet
-        Projects/mandlebrotSet/mandlebrotSet.cpp Projects/mandlebrotSet/mandlebrotSet.h
+        Projects/Fractals/mandlebrotSet/mandlebrotSet.cpp Projects/Fractals/mandlebrotSet/mandlebrotSet.h
 
         # abs difference
         Projects/abs_difference/abs_difference.h

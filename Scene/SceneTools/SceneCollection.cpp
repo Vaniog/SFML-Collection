@@ -47,12 +47,12 @@ void SceneCollection::MainCycle(sf::RenderWindow& window) {
 void SceneCollection::OnEvent(sf::Event& event, const Timer& timer) {
     if (display_mode_ == MenuDisplay) {
         if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Enter) {
-                display_mode_ = SceneDisplay;
-                LoadScene();
-            } else if (event.key.code == sf::Keyboard::Escape){
-                closed_ = true;
+            if (event.key.code == sf::Keyboard::Escape) {
+                if (!menu_scene_->ChangeDirectory(".."))
+                    closed_ = true;
             }
+        } else if (event.type == sf::Event::MouseButtonReleased) {
+            OnMousePressed();
         }
     } else if (display_mode_ == SceneDisplay) {
         if (event.type == sf::Event::KeyPressed) {
@@ -64,6 +64,14 @@ void SceneCollection::OnEvent(sf::Event& event, const Timer& timer) {
     }
 }
 
-void SceneCollection::LoadScene() {
-    cur_scene_ = GetSceneByName(menu_scene_->CurSceneName());
+void SceneCollection::OnMousePressed() {
+    if (menu_scene_->SelectedScene().empty()) {
+        return;
+    }
+    if (menu_scene_->IsScene(menu_scene_->SelectedScene())) {
+        display_mode_ = SceneDisplay;
+        cur_scene_ = GetSceneByName(menu_scene_->SelectedScene());
+    } else {
+        menu_scene_->ChangeDirectory(menu_scene_->SelectedScene());
+    }
 }

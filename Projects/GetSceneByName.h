@@ -4,7 +4,7 @@
 #include "SquareViewer/SquareViewer.h"
 #include "SnakeGame/SnakeScene.h"
 #include "abs_difference/abs_difference.h"
-#include "mandlebrotSet/mandlebrotSet.h"
+#include "Fractals/mandlebrotSet//mandlebrotSet.h"
 #include "domain_warping/domain_warping.h"
 #include "blob/blob.h"
 #include <memory>
