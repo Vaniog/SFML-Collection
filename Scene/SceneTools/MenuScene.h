@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "ProjectCover.h"
+#include "DirScene.h"
 
 #include <filesystem>
 #include <set>
@@ -18,27 +19,18 @@ public:
     bool IsScene(const std::string& name);
 
     bool ChangeDirectory(const fs::path& new_dir);
-    std::string CurSceneName();
+    std::string SelectedScene();
 private:
     static const fs::path default_root_directory_;
     fs::path root_directory_;
-    void FillSceneNames();
-    std::vector<std::string> scene_names_;
 
     static const std::string folders_conf_name_;
     void FillFolderNames();
     std::set<std::string> folder_names_;
+    std::shared_ptr<DirScene> dir_scene_;
 
-    int32_t cur_scene_index_;
     void LoadGraphics();
-    std::shared_ptr<ProjectCover> old_cover_;
-    std::shared_ptr<ProjectCover> cover_;
     sf::Font font_;
     sf::Text help_text_;
     float char_size_ = 0.02;
-
-    enum Direction {
-        Up, Down, Left, Right, None
-    };
-    void ReloadCover(const Direction& move_direction = Direction::None);
 };

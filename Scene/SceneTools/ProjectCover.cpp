@@ -28,15 +28,15 @@ void ProjectCover::OnDraw(sf::RenderWindow& window) {
 }
 
 void ProjectCover::FixSizes() {
-    float scale = std::min(window_size_.x * cover_size_.x / static_cast<float>(texture_.getSize().x),
-                           window_size_.y * cover_size_.y / static_cast<float>(texture_.getSize().y));
-    sprite_.setScale(scale, scale);
+    float scale = std::min(cover_size_.x / static_cast<float>(texture_.getSize().x),
+                           cover_size_.y / static_cast<float>(texture_.getSize().y));
+    sprite_.setScale(scale * add_scale, scale * add_scale);
     sprite_.setOrigin(sprite_.getLocalBounds().width / 2, sprite_.getLocalBounds().height / 2);
     sprite_.setPosition(pos_.x, pos_.y);
 
-    text_.setCharacterSize(static_cast<uint32_t>(window_size_.y * char_size_));
+    text_.setCharacterSize(static_cast<uint32_t>(cover_size_.y * char_size_ * add_scale));
     text_.setOrigin(text_.getGlobalBounds().width / 2, text_.getGlobalBounds().height / 2);
-    text_.setPosition(pos_.x, pos_.y + sprite_.getGlobalBounds().height / 2 + window_size_.y * char_size_);
+    text_.setPosition(pos_.x, pos_.y + cover_size_.y / 2 * add_scale + cover_size_.y * char_size_ * add_scale);
 }
 
 void ProjectCover::SetPosition(float x, float y) {
@@ -45,7 +45,8 @@ void ProjectCover::SetPosition(float x, float y) {
 }
 
 void ProjectCover::SetSize(float x, float y) {
-
+    cover_size_ = {x, y};
+    FixSizes();
 }
 
 void ProjectCover::MoveTo(float x, float y, float duration_secs) {
@@ -67,4 +68,27 @@ void ProjectCover::OnFrame(const Timer& timer) {
     }
     pos_ = old_pos_ + (new_pos_ - old_pos_) * (move_duration_pass_ / move_duration_);
     FixSizes();
+}
+
+void ProjectCover::OnEvent(sf::Event& event, const Timer& timer) {
+    if (event.type == sf::Event::MouseMoved) {
+        sf::Vector2f mouse_pos = sf::Vector2f(sf::Mouse::getPosition());
+        if (mouse_pos.x >= pos_.x - cover_size_.x / 2.0f &&
+                mouse_pos.x <= pos_.x + cover_size_.x / 2.0f &&
+                mouse_pos.y >= pos_.y - cover_size_.y / 2.0f &&
+                mouse_pos.y <= pos_.y + cover_size_.y / 2.0f) {
+            add_scale = 1.05;
+            pressed = true;
+        } else {
+            add_scale = 1;
+            pressed = false;
+        }
+        FixSizes();
+    }
+}
+bool ProjectCover::Pressed() const {
+    return pressed;
+}
+std::string ProjectCover::GetName() const {
+    return name_;
 }

@@ -18,6 +18,7 @@ include_directories(Scene Scene/SceneTools)
 add_executable(${PROJECT_NAME} main.cpp
         Scene/Scene.cpp
         Scene/SceneTools/SceneCollection.cpp
+        Scene/SceneTools/DirScene.cpp
         Scene/SceneTools/MenuScene.cpp
         Scene/SceneTools/ProjectCover.cpp
         Scene/SceneTools/Timer.cpp

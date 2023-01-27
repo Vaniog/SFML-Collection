@@ -28,6 +28,8 @@ mandlebrotSet::mandlebrotSet(){
     iteration_count.setCharacterSize(text_size);
     iteration_count.setFillColor(sf::Color::White);
     iteration_count.setPosition(0, window_size_.y - 1.5*text_size);
+
+    campute_set();
 };
 
 int mandlebrotSet::is_in_set(std::complex<double> c) {
