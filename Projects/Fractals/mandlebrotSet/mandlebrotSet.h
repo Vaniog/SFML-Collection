@@ -17,8 +17,6 @@ private:
     int width = floor(fmax(window_size_.x, window_size_.y)/2);
     int height = floor(fmin(window_size_.x, window_size_.y)/1.6);
 
-    sf::Vector2i mouse_window_pos;
-
     double initial_scale = 1.5/height;
 
     sf::Uint8* pixels = new sf::Uint8[width * height * 4];

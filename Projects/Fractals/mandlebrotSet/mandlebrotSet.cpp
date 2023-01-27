@@ -91,17 +91,17 @@ void mandlebrotSet::campute_set() {
 };
 
 void mandlebrotSet::OnEvent(sf::Event& event, const Timer& timer) {
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		if (mouse_window_pos.x>(window_size_.x/2 - width/2) && mouse_window_pos.x<(window_size_.x/2 + width/2) &&
-			mouse_window_pos.y>(window_size_.y/2 - height/2) && mouse_window_pos.y<(window_size_.y/2 + height/2))
+	if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
+		if (event.mouseButton.x>(window_size_.x/2 - width/2) && event.mouseButton.x<(window_size_.x/2 + width/2) &&
+			event.mouseButton.y>(window_size_.y/2 - height/2) && event.mouseButton.y<(window_size_.y/2 + height/2))
 		{
-	    sf::Vector2i mouse_pos = sf::Vector2i(RemapD(mouse_window_pos.x,
+	    sf::Vector2i mouse_pos = sf::Vector2i(RemapD(event.mouseButton.x,
                                                      (window_size_.x / 2 - width / 2),
                                                      (window_size_.x / 2 + width / 2),
                                                      0,
                                                      width)
                                              ,
-                                              RemapD(mouse_window_pos.y,
+                                              RemapD(event.mouseButton.y,
                                                      (window_size_.y / 2 - height / 2),
                                                      (window_size_.y / 2 + height / 2),
                                                      0,
@@ -124,6 +124,7 @@ void mandlebrotSet::OnEvent(sf::Event& event, const Timer& timer) {
 	    campute_set();
     	}
 	}
+    
 	//iteration count control
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && iteration >= 0){
 	    iteration += 20;
@@ -145,6 +146,4 @@ void mandlebrotSet::OnDraw(sf::RenderWindow& window) {
 
     window.draw(controls);
     window.draw(iteration_count);
-
-    mouse_window_pos = sf::Mouse::getPosition(window);
 };
