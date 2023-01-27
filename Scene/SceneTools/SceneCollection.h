@@ -21,5 +21,5 @@ private:
 
     std::shared_ptr<MenuScene> menu_scene_;
     std::shared_ptr<Scene> cur_scene_;
-    void LoadScene();
+    void OnEnterPressed();
 };

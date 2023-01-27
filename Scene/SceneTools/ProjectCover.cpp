@@ -1,14 +1,14 @@
 #include "ProjectCover.h"
 #include <filesystem>
 
-ProjectCover::ProjectCover(const std::string& name) {
-    name_ = name;
+ProjectCover::ProjectCover(const fs::path& proj_path) {
+    name_ = proj_path.filename().string();
 
     font_.loadFromFile("Resources/MenuFont.ttf");
     text_.setFont(font_);
     text_.setFillColor(sf::Color::White);
 
-    auto cover_path = std::filesystem::current_path() / "Projects" / name_ / "cover.png";
+    auto cover_path = std::filesystem::current_path() / proj_path / "cover.png";
     if (std::filesystem::exists(cover_path)) {
         texture_.loadFromFile(cover_path.string());
     }
@@ -44,13 +44,16 @@ void ProjectCover::SetPosition(float x, float y) {
     FixSizes();
 }
 
+void ProjectCover::SetSize(float x, float y) {
+
+}
+
 void ProjectCover::MoveTo(float x, float y, float duration_secs) {
     old_pos_ = pos_;
     new_pos_ = {x, y};
     move_duration_ = duration_secs;
     move_duration_pass_ = 0;
 }
-
 void ProjectCover::OnFrame(const Timer& timer) {
     if (move_duration_ == 0)
         return;
@@ -59,6 +62,7 @@ void ProjectCover::OnFrame(const Timer& timer) {
         move_duration_pass_ = 0;
         move_duration_ = 0;
         pos_ = new_pos_;
+        FixSizes();
         return;
     }
     pos_ = old_pos_ + (new_pos_ - old_pos_) * (move_duration_pass_ / move_duration_);

@@ -3,14 +3,18 @@
 #include "Scene.h"
 
 #include <iostream>
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 class ProjectCover : public Scene {
 public:
-    explicit ProjectCover(const std::string& name);
+    explicit ProjectCover(const fs::path& proj_path);
     void OnDraw(sf::RenderWindow& window) override;
     void OnFrame(const Timer& timer) override;
     void OnEvent(sf::Event& event, const Timer& timer) override {};
 
+    void SetSize(float x, float y);
     void SetPosition(float x, float y);
     void MoveTo(float x, float y, float duration_secs);
 private:

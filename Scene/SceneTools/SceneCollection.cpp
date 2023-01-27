@@ -48,10 +48,10 @@ void SceneCollection::OnEvent(sf::Event& event, const Timer& timer) {
     if (display_mode_ == MenuDisplay) {
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Enter) {
-                display_mode_ = SceneDisplay;
-                LoadScene();
-            } else if (event.key.code == sf::Keyboard::Escape){
-                closed_ = true;
+                OnEnterPressed();
+            } else if (event.key.code == sf::Keyboard::Escape) {
+                if (!menu_scene_->ChangeDirectory(".."))
+                    closed_ = true;
             }
         }
     } else if (display_mode_ == SceneDisplay) {
@@ -64,6 +64,11 @@ void SceneCollection::OnEvent(sf::Event& event, const Timer& timer) {
     }
 }
 
-void SceneCollection::LoadScene() {
-    cur_scene_ = GetSceneByName(menu_scene_->CurSceneName());
+void SceneCollection::OnEnterPressed() {
+    if (menu_scene_->IsScene(menu_scene_->CurSceneName())) {
+        display_mode_ = SceneDisplay;
+        cur_scene_ = GetSceneByName(menu_scene_->CurSceneName());
+    } else {
+        menu_scene_->ChangeDirectory(menu_scene_->CurSceneName());
+    }
 }
