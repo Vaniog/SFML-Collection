@@ -26,11 +26,12 @@ void MenuScene::LoadGraphics() {
     font_.loadFromFile("Resources/MenuFont.ttf");
     help_text_.setFont(font_);
     help_text_.setFillColor(sf::Color::White);
-    help_text_.setString("Arrows to select\n"
-                         "Enter to launch\n"
+    help_text_.setString("Select with mouse\n"
+                         "Hold mouse to read description\n"
+                         "Move menu with Up-Down arrows\n"
                          "In play mode, ESC to exit");
     help_text_.setPosition(0, 0);
-    help_text_.setCharacterSize(window_size_.y * char_size_);
+    help_text_.setCharacterSize((uint32_t)(window_size_.y * char_size_));
     dir_scene_ = std::make_shared<DirScene>(root_directory_);
 }
 

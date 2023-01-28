@@ -24,7 +24,8 @@ private:
     uint32_t covers_in_row_ = 5;
     sf::Vector2f start_ = {0, 0};
     sf::Vector2f size_ = window_size_;
-    sf::Vector2f padding = {0.5, 0.5}; // in percents of cover size
+    sf::Vector2f cover_size_;
+    sf::Vector2f padding_ = {0.5, 0.5}; // in percents of cover size
 
     void LoadGraphics();
     std::vector<std::shared_ptr<ProjectCover>> covers_;

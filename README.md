@@ -14,7 +14,8 @@ your own class inherited from the Scene class, and design it by rules:
 4. **Write all your files to CMakeLists.txt**
 5. **Add method to return your class by name in Projects/GetSceneByName.h**
 6. **Add cover to your Project: Projects/YOUR_PROJECT_NAME/cover.png**
-7. **Create pull request**
+7. **Add description to your Project: Projects/YOUR_PROJECT_NAME/description.txt**
+8. **Create pull request**
 
 ### Scene
     class Scene {
@@ -68,5 +69,7 @@ without example
 ![img](Resources/ForReadme_4.png)
 ### Add cover to your Project: Projects/YOUR_PROJECT_NAME/cover.png
 ![img](Resources/ForReadme_5.png)
+### Add description to your Project: Projects/YOUR_PROJECT_NAME/description.txt
+![img](Resources/ForReadme_6.png)
 ### Create pull request
 without example

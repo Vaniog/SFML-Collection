@@ -1,6 +1,7 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include "Scene.h"
+#include "DescriptionScene.h"
 
 #include <iostream>
 #include <filesystem>
@@ -16,7 +17,6 @@ public:
 
     void SetSize(float x, float y);
     void SetPosition(float x, float y);
-    void MoveTo(float x, float y, float duration_secs);
 
     std::string GetName() const;
     bool Pressed() const;
@@ -24,11 +24,8 @@ private:
     bool pressed = false;
 
     sf::Vector2f pos_;
-    sf::Vector2f old_pos_{};
-    sf::Vector2f new_pos_{};
-    float move_duration_pass_{};
-    float move_duration_{};
 
+    void OnMouseMove(sf::Vector2f mouse_pos);
     void FixSizes();
     std::string name_;
 
@@ -39,5 +36,7 @@ private:
     sf::Sprite sprite_;
 
     sf::Font font_;
-    sf::Text text_;
+    sf::Text name_text_;
+
+    std::shared_ptr<DescriptionScene> description_scene_;
 };
