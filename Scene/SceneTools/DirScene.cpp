@@ -1,4 +1,5 @@
 #include "DirScene.h"
+#include "../Animation/Interpolator.h"
 
 #include <fstream>
 
@@ -21,6 +22,7 @@ void DirScene::OnFrame(const Timer& timer) {
     for (auto& cover : covers_) {
         cover->OnFrame(timer);
     }
+    FixSizes();
 }
 
 void DirScene::OnDraw(sf::RenderWindow& window) {
@@ -32,6 +34,13 @@ void DirScene::OnDraw(sf::RenderWindow& window) {
 void DirScene::OnEvent(sf::Event& event, const Timer& timer) {
     for (auto& cover : covers_) {
         cover->OnEvent(event, timer);
+    }
+    if (event.type == sf::Event::KeyPressed) {
+        if (event.key.code == sf::Keyboard::Down) {
+            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y + size_.y * 0.1f, 0.2));
+        } else if (event.key.code == sf::Keyboard::Up) {
+            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y - size_.y * 0.1f, 0.2));
+        }
     }
 }
 

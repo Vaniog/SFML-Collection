@@ -16,7 +16,6 @@ public:
 
     void SetSize(float x, float y);
     void SetPosition(float x, float y);
-    void MoveTo(float x, float y, float duration_secs);
 
     std::string GetName() const;
     bool Pressed() const;
@@ -31,6 +30,7 @@ private:
 
     void FixSizes();
     std::string name_;
+    std::string description_;
 
     sf::Vector2f cover_size_;
     float add_scale = 1;
@@ -39,5 +39,8 @@ private:
     sf::Sprite sprite_;
 
     sf::Font font_;
-    sf::Text text_;
+    sf::Text name_text_;
+
+    sf::RectangleShape description_border;
+    sf::Text description_text_;
 };

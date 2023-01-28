@@ -1,6 +1,7 @@
 #include "SceneCollection.h"
 #include "../../Projects/GetSceneByName.h"
 #include "MenuScene.h"
+#include "../Animation/Interpolator.h"
 
 #include <memory>
 
@@ -32,6 +33,8 @@ void SceneCollection::MainCycle(sf::RenderWindow& window) {
         timer.Update();
 
         cur_scene_->OnFrame(timer);
+        Interpolator::Update(timer.GetDelta());
+
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed || closed_)
                 window.close();
