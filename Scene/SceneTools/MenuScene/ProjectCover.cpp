@@ -32,6 +32,8 @@ void ProjectCover::OnDraw(sf::RenderWindow& window) {
     window.draw(sprite_);
     window.draw(name_text_);
     description_scene_->OnDraw(window);
+    OnMouseMove(sf::Vector2f((float)sf::Mouse::getPosition(window).x,
+                             (float)sf::Mouse::getPosition(window).y));
 }
 
 void ProjectCover::FixSizes() {
@@ -63,24 +65,25 @@ void ProjectCover::OnFrame(const Timer& timer) {
 }
 
 void ProjectCover::OnEvent(sf::Event& event, const Timer& timer) {
-    if (event.type == sf::Event::MouseMoved) {
-        sf::Vector2f mouse_pos = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
-        if (sprite_.getGlobalBounds().contains(mouse_pos) || name_text_.getGlobalBounds().contains(mouse_pos)) {
-            if (!pressed) {
-                description_scene_->Show();
-                Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1.05, 0.05));
-                pressed = true;
-            }
-        } else {
-            if (pressed) {
-                description_scene_->Hide();
-                Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
-                pressed = false;
-            }
-        }
-        FixSizes();
-    }
 }
+
+void ProjectCover::OnMouseMove(sf::Vector2f mouse_pos) {
+    if (sprite_.getGlobalBounds().contains(mouse_pos) || name_text_.getGlobalBounds().contains(mouse_pos)) {
+        if (!pressed) {
+            description_scene_->Show();
+            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1.05, 0.05));
+            pressed = true;
+        }
+    } else {
+        if (pressed) {
+            description_scene_->Hide();
+            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
+            pressed = false;
+        }
+    }
+    FixSizes();
+}
+
 bool ProjectCover::Pressed() const {
     return pressed;
 }

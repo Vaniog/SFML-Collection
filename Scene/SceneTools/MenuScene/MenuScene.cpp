@@ -27,6 +27,7 @@ void MenuScene::LoadGraphics() {
     help_text_.setFont(font_);
     help_text_.setFillColor(sf::Color::White);
     help_text_.setString("Select with mouse\n"
+                         "Hold mouse to read description\n"
                          "Move menu with Up-Down arrows\n"
                          "In play mode, ESC to exit");
     help_text_.setPosition(0, 0);

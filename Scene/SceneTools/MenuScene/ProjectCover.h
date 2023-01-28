@@ -25,6 +25,7 @@ private:
 
     sf::Vector2f pos_;
 
+    void OnMouseMove(sf::Vector2f mouse_pos);
     void FixSizes();
     std::string name_;
 

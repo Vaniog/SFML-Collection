@@ -1,0 +1,5 @@
+Classic Mandelbrot set
+
+Click to zoom
+Control precision with Up-Down arrows
+Enter to redraw picture
