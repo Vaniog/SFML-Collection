@@ -23,14 +23,9 @@ private:
     bool pressed = false;
 
     sf::Vector2f pos_;
-    sf::Vector2f old_pos_{};
-    sf::Vector2f new_pos_{};
-    float move_duration_pass_{};
-    float move_duration_{};
 
     void FixSizes();
     std::string name_;
-    std::string description_;
 
     sf::Vector2f cover_size_;
     float add_scale = 1;
@@ -41,6 +36,9 @@ private:
     sf::Font font_;
     sf::Text name_text_;
 
-    sf::RectangleShape description_border;
+    double description_alpha_ = 0;
+    std::string description_;
+    float description_padding_ = 100;
+    sf::RectangleShape description_border_;
     sf::Text description_text_;
 };

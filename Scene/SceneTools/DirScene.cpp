@@ -37,9 +37,9 @@ void DirScene::OnEvent(sf::Event& event, const Timer& timer) {
     }
     if (event.type == sf::Event::KeyPressed) {
         if (event.key.code == sf::Keyboard::Down) {
-            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y + size_.y * 0.1f, 0.2));
+            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y + cover_size_.y * (1 + padding_.y), 0.2));
         } else if (event.key.code == sf::Keyboard::Up) {
-            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y - size_.y * 0.1f, 0.2));
+            Interpolator::AddTask(AnimTask<float>(start_.y, start_.y, start_.y - cover_size_.y * (1 + padding_.y), 0.2));
         }
     }
 }
@@ -54,15 +54,16 @@ void DirScene::LoadGraphics() {
 void DirScene::FixSizes() {
     uint32_t row = 0;
     uint32_t col = 0;
-    sf::Vector2f cover_size = {
-            size_.x / (((float)covers_in_row_ + ((float)covers_in_row_ + 1) * padding.x)),
-            size_.x / (((float)covers_in_row_ + ((float)covers_in_row_ + 1) * padding.x)),
+    cover_size_ = {
+            size_.x / (((float)covers_in_row_ + ((float)covers_in_row_ + 1) * padding_.x)),
+            size_.x / (((float)covers_in_row_ + ((float)covers_in_row_ + 1) * padding_.x)),
     };
 
     for (auto& cover : covers_) {
-        cover->SetSize(cover_size.x, cover_size.y);
-        cover->SetPosition(start_.x + cover_size.x * (padding.x + 0.5f) + (float)col * cover_size.x * (1 + padding.x),
-                           start_.y + cover_size.y * (padding.y + 0.5f) + (float)row * cover_size.y * (1 + padding.y));
+        cover->SetSize(cover_size_.x, cover_size_.y);
+        cover->SetPosition(start_.x + cover_size_.x * (padding_.x + 0.5f) + (float)col * cover_size_.x * (1 + padding_.x),
+                           start_.y + cover_size_.y * (padding_.y + 0.5f)
+                                   + (float)row * cover_size_.y * (1 + padding_.y));
 
         col++;
         if (col >= covers_in_row_) {

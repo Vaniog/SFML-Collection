@@ -35,12 +35,17 @@ ProjectCover::ProjectCover(const fs::path& proj_path) {
                                        static_cast<int32_t>(texture_.getSize().y)));
     name_text_.setString(name_);
     description_text_.setString(description_);
+
     FixSizes();
 }
 
 void ProjectCover::OnDraw(sf::RenderWindow& window) {
     window.draw(sprite_);
     window.draw(name_text_);
+    if (!description_.empty()) {
+        window.draw(description_border_);
+        window.draw(description_text_);
+    }
 }
 
 void ProjectCover::FixSizes() {
@@ -56,6 +61,17 @@ void ProjectCover::FixSizes() {
     name_text_.setPosition(pos_.x, pos_.y + cover_size_.y / 2 + cover_size_.y * char_size_ * add_scale);
 
     description_text_.setCharacterSize(static_cast<uint32_t>(cover_size_.y * char_size_));
+    description_text_.setOrigin(description_text_.getLocalBounds().width / 2,
+                                description_text_.getLocalBounds().height / 2);
+    description_text_.setPosition(window_size_.x / 2, window_size_.y / 2);
+
+    description_border_.setOrigin(description_border_.getLocalBounds().width / 2,
+                                  description_border_.getLocalBounds().height / 2);
+    description_border_.setSize(sf::Vector2f(description_text_.getGlobalBounds().width,
+                                             description_text_.getGlobalBounds().height)
+                                        + sf::Vector2f(description_padding_,
+                                                       description_padding_));
+    description_border_.setPosition(window_size_.x / 2, window_size_.y / 2);
 }
 
 void ProjectCover::SetPosition(float x, float y) {
@@ -69,21 +85,31 @@ void ProjectCover::SetSize(float x, float y) {
 }
 
 void ProjectCover::OnFrame(const Timer& timer) {
+    description_text_.setFillColor(sf::Color(0, 0, 0, (uint8_t)(description_alpha_ * 255.0f)));
+    description_border_.setFillColor(sf::Color(255, 255, 255, (uint8_t)(description_alpha_ * 255.0f)));
     FixSizes();
 }
 
 void ProjectCover::OnEvent(sf::Event& event, const Timer& timer) {
     if (event.type == sf::Event::MouseMoved) {
-        sf::Vector2f mouse_pos = sf::Vector2f(event.mouseMove.x, event.mouseMove.y);
-        if (mouse_pos.x >= pos_.x - cover_size_.x / 2.0f &&
-                mouse_pos.x <= pos_.x + cover_size_.x / 2.0f &&
-                mouse_pos.y >= pos_.y - cover_size_.y / 2.0f &&
-                mouse_pos.y <= pos_.y + cover_size_.y / 2.0f) {
-            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1.05, 0.05));
-            pressed = true;
+        sf::Vector2f mouse_pos = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
+        if (sprite_.getGlobalBounds().contains(mouse_pos) || name_text_.getGlobalBounds().contains(mouse_pos)) {
+            if (!pressed) {
+                Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1.05, 0.05));
+                Interpolator::AddTask(AnimTask<double>(description_alpha_, description_alpha_, 1, 0.5,
+                                                       [](float t) {
+                                                         if (t < 0.5)
+                                                             return 0.0;
+                                                         return InterpolFunctions<double>::SmoothFunction(2 * t - 1);
+                                                       }));
+                pressed = true;
+            }
         } else {
-            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
-            pressed = false;
+            if (pressed) {
+                Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
+                Interpolator::AddTask(AnimTask<double>(description_alpha_, description_alpha_, 0, 0.5));
+                pressed = false;
+            }
         }
         FixSizes();
     }
