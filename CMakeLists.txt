@@ -18,9 +18,9 @@ include_directories(Scene Scene/SceneTools Scene/Animation)
 add_executable(${PROJECT_NAME} main.cpp
         Scene/Scene.cpp
         Scene/SceneTools/SceneCollection.cpp
-        Scene/SceneTools/DirScene.cpp
-        Scene/SceneTools/MenuScene.cpp
-        Scene/SceneTools/ProjectCover.cpp
+        Scene/SceneTools/MenuScene/DirScene.cpp
+        Scene/SceneTools/MenuScene/MenuScene.cpp
+        Scene/SceneTools/MenuScene/ProjectCover.cpp
         Scene/SceneTools/Timer.cpp
         Scene/Animation/Interpolator.cpp
 
@@ -45,7 +45,7 @@ add_executable(${PROJECT_NAME} main.cpp
         Projects/domain_warping/domain_warping.cpp Projects/domain_warping/domain_warping.h
 
         # blob
-        Projects/blob/blob.cpp Projects/blob/blob.h Scene/Animation/InterpolFunctions.h)
+        Projects/blob/blob.cpp Projects/blob/blob.h Scene/Animation/InterpolFunctions.h Scene/SceneTools/MenuScene/DescriptionScene.cpp Scene/SceneTools/MenuScene/DescriptionScene.h)
 
 
 target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)

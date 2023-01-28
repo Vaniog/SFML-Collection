@@ -1,7 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "ProjectCover.h"
-#include "DirScene.h"
+#include "SceneTools/MenuScene/DirScene.h"
 
 #include <filesystem>
 #include <set>

@@ -1,6 +1,6 @@
 #include "SceneCollection.h"
 #include "../../Projects/GetSceneByName.h"
-#include "MenuScene.h"
+#include "SceneTools/MenuScene/MenuScene.h"
 #include "../Animation/Interpolator.h"
 
 #include <memory>

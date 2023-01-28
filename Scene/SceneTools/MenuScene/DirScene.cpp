@@ -1,5 +1,5 @@
 #include "DirScene.h"
-#include "../Animation/Interpolator.h"
+#include "Animation/Interpolator.h"
 
 #include <fstream>
 
