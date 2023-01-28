@@ -65,7 +65,7 @@ void DirScene::FixSizes() {
                            start_.y + cover_size.y * (padding.y + 0.5f) + (float)row * cover_size.y * (1 + padding.y));
 
         col++;
-        if (col > covers_in_row_) {
+        if (col >= covers_in_row_) {
             row++;
             col = 0;
         }
