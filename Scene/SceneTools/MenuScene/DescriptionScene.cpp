@@ -1,6 +1,7 @@
 #include "DescriptionScene.h"
 
 #include <fstream>
+#include <sstream>
 #include "Interpolator.h"
 
 DescriptionScene::DescriptionScene(const fs::path& proj_path) {
