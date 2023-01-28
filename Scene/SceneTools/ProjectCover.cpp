@@ -107,7 +107,7 @@ void ProjectCover::OnEvent(sf::Event& event, const Timer& timer) {
         } else {
             if (pressed) {
                 Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
-                Interpolator::AddTask(AnimTask<double>(description_alpha_, description_alpha_, 0, 0.5));
+                Interpolator::AddTask(AnimTask<double>(description_alpha_, description_alpha_, 0, 0.3));
                 pressed = false;
             }
         }

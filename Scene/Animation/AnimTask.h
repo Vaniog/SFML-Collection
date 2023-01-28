@@ -14,6 +14,10 @@ public:
              std::function<double(double)> InterpolFunction = InterpolFunctions<T>::SmoothFunction);
 
     bool Update(double delta_time);
+
+    uintptr_t  GetHash();
+    bool operator==(const AnimTask<T>& anim_task);
+    bool operator<(const AnimTask<T>& anim_task);
 private:
     T start_value_;
     T end_value_;
@@ -23,6 +27,18 @@ private:
 
     std::function<double(double)> InterpolFunction_;
 };
+template<typename T>
+uintptr_t AnimTask<T>::GetHash() {
+    return reinterpret_cast<uintptr_t>(value_);
+}
+template<typename T>
+bool AnimTask<T>::operator<(const AnimTask<T>& anim_task) {
+    return anim_task.GetHash() < GetHash();
+}
+template<typename T>
+bool AnimTask<T>::operator==(const AnimTask<T>& anim_task) {
+    return anim_task.GetHash() == GetHash();
+}
 
 template<typename T>
 AnimTask<T>::AnimTask(T& value,
