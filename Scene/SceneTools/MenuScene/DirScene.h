@@ -29,5 +29,6 @@ private:
 
     void LoadGraphics();
     std::vector<std::shared_ptr<ProjectCover>> covers_;
+    std::shared_ptr<DescriptionScene> description_scene_;
     void FixSizes();
 };

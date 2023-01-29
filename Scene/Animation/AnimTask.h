@@ -3,6 +3,7 @@
 
 #include <functional>
 #include <iostream>
+#include <utility>
 
 template<typename T>
 class AnimTask {
@@ -11,7 +12,7 @@ public:
              T start_value,
              T end_value,
              double time_length,
-             std::function<double(double)> InterpolFunction = InterpolFunctions<T>::SmoothFunction);
+             std::function<double(double)> InterpolFunction = InterpolFunctions::SmoothFunction);
 
     bool Update(double delta_time);
 
@@ -27,6 +28,7 @@ private:
 
     std::function<double(double)> InterpolFunction_;
 };
+
 template<typename T>
 uintptr_t AnimTask<T>::GetHash() {
     return reinterpret_cast<uintptr_t>(value_);

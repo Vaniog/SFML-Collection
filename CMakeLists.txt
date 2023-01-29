@@ -42,7 +42,7 @@ add_executable(${PROJECT_NAME} main.cpp
     Projects/domain_warping/domain_warping.cpp Projects/domain_warping/domain_warping.h
 
     # blob
-    Projects/blob/blob.cpp Projects/blob/blob.h Scene/Animation/InterpolFunctions.h Scene/SceneTools/MenuScene/DescriptionScene.cpp Scene/SceneTools/MenuScene/DescriptionScene.h)
+    Projects/blob/blob.cpp Projects/blob/blob.h Scene/Animation/InterpolFunctions.h Scene/SceneTools/MenuScene/DescriptionScene.cpp Scene/SceneTools/MenuScene/DescriptionScene.h Scene/Animation/InterpolFunctions.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE Scene Scene/SceneTools Scene/Animation)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-audio)

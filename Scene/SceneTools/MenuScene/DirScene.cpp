@@ -22,6 +22,7 @@ void DirScene::OnFrame(const Timer& timer) {
     for (auto& cover : covers_) {
         cover->OnFrame(timer);
     }
+    description_scene_->OnFrame(timer);
     FixSizes();
 }
 
@@ -29,6 +30,7 @@ void DirScene::OnDraw(sf::RenderWindow& window) {
     for (auto& cover : covers_) {
         cover->OnDraw(window);
     }
+    description_scene_->OnDraw(window);
 }
 
 void DirScene::OnEvent(sf::Event& event, const Timer& timer) {
@@ -46,8 +48,9 @@ void DirScene::OnEvent(sf::Event& event, const Timer& timer) {
 
 void DirScene::LoadGraphics() {
     covers_.clear();
+    description_scene_ = std::make_shared<DescriptionScene>();
     for (const auto& scene_name : scene_names_) {
-        covers_.emplace_back(std::make_shared<ProjectCover>(root_directory_ / scene_name));
+        covers_.emplace_back(std::make_shared<ProjectCover>(root_directory_ / scene_name, description_scene_));
     }
     FixSizes();
 }
