@@ -1,0 +1,4 @@
+domain warping with openSimplex noise
+
+Right-Left control speed
+Up-Down control resolution
