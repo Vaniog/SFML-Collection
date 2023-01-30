@@ -6,11 +6,14 @@ if (WIN32)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive")
 endif ()
 
+option(BUILD_SHARED_LIBS OFF "Build shared libraries")
+
 include(FetchContent)
 FetchContent_Declare(SFML
         GIT_REPOSITORY https://github.com/SFML/SFML.git
         GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
+
 
 add_executable(${PROJECT_NAME} main.cpp
         Scene/Scene.cpp
