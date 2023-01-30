@@ -64,28 +64,28 @@ void DescriptionScene::OnEvent(sf::Event& event, const Timer& timer) {
 
 void DescriptionScene::Show() {
     if (alpha_ == 0) {
-        Interpolator::AddTask(AnimTask<double>(alpha_, alpha_, 1, 0.5,
-                                               [](float t) {
-                                                 if (t < 0.5)
-                                                     return 0.0;
-                                                 return InterpolFunctions::SmoothFunction(2 * t - 1);
-                                               }));
+        Interpolator::AddAnim(Animation<double>(alpha_, alpha_, 1, 0.5,
+                                                [](float t) {
+                                                  if (t < 0.5)
+                                                      return 0.0;
+                                                  return IpFuncs::EaseInOut(2 * t - 1);
+                                                }));
     } else {
-        Interpolator::AddTask(AnimTask<double>(alpha_, alpha_, 1, 0.25, InterpolFunctions::SmoothFunction));
+        Interpolator::AddAnim(Animation<double>(alpha_, alpha_, 1, 0.25, IpFuncs::EaseInOut));
     }
-    Interpolator::AddTask(AnimTask<float>(scale_, scale_, 1, 0.5,
-                                          [](float t) {
-                                            if (t < 0.5)
-                                                return 0.0;
-                                            return InterpolFunctions::SmoothFunction(2 * t - 1);
-                                          }));
-}
-void DescriptionScene::Hide() {
-    Interpolator::AddTask(AnimTask<double>(alpha_, alpha_, 0, 0.3,
-                                           [&](float t) {
+    Interpolator::AddAnim(Animation<float>(scale_, scale_, 1, 0.5,
+                                           [](float t) {
                                              if (t < 0.5)
                                                  return 0.0;
-                                             return InterpolFunctions::SmoothFunction(2 * t - 1);
+                                             return IpFuncs::EaseInOut(2 * t - 1);
                                            }));
-    Interpolator::AddTask(AnimTask<float>(scale_, scale_, 0.9, 0.3));
+}
+void DescriptionScene::Hide() {
+    Interpolator::AddAnim(Animation<double>(alpha_, alpha_, 0, 0.3,
+                                            [&](float t) {
+                                              if (t < 0.5)
+                                                  return 0.0;
+                                              return IpFuncs::EaseInOut(2 * t - 1);
+                                            }));
+    Interpolator::AddAnim(Animation<float>(scale_, scale_, 0.9, 0.3));
 }

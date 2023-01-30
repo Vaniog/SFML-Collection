@@ -70,13 +70,13 @@ void ProjectCover::OnMouseMove(sf::Vector2f mouse_pos) {
         if (!pressed) {
             description_scene_->SetDescriptionFrom(proj_path_);
             description_scene_->Show();
-            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1.05, 0.05));
+            Interpolator::AddAnim(Animation<float>(add_scale, add_scale, 1.05, 0.05));
             pressed = true;
         }
     } else {
         if (pressed) {
             description_scene_->Hide();
-            Interpolator::AddTask(AnimTask<float>(add_scale, add_scale, 1, 0.05));
+            Interpolator::AddAnim(Animation<float>(add_scale, add_scale, 1, 0.05));
             pressed = false;
         }
     }

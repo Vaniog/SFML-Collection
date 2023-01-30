@@ -1,24 +1,24 @@
 #pragma once
-#include "InterpolFunctions.h"
+#include "IpFuncs.h"
 
 #include <functional>
 #include <iostream>
 #include <utility>
 
 template<typename T>
-class AnimTask {
+class Animation {
 public:
-    AnimTask(T& value,
-             T start_value,
-             T end_value,
-             double time_length,
-             std::function<double(double)> InterpolFunction = InterpolFunctions::SmoothFunction);
+    Animation(T& value,
+              T start_value,
+              T end_value,
+              double time_length,
+              const std::function<double(double)>& InterpolFunction = IpFuncs::Ease);
 
     bool Update(double delta_time);
 
-    uintptr_t  GetHash();
-    bool operator==(const AnimTask<T>& anim_task);
-    bool operator<(const AnimTask<T>& anim_task);
+    uintptr_t GetHash();
+    bool operator==(const Animation<T>& anim_task);
+    bool operator<(const Animation<T>& anim_task);
 private:
     T start_value_;
     T end_value_;
@@ -30,24 +30,24 @@ private:
 };
 
 template<typename T>
-uintptr_t AnimTask<T>::GetHash() {
+uintptr_t Animation<T>::GetHash() {
     return reinterpret_cast<uintptr_t>(value_);
 }
 template<typename T>
-bool AnimTask<T>::operator<(const AnimTask<T>& anim_task) {
+bool Animation<T>::operator<(const Animation<T>& anim_task) {
     return anim_task.GetHash() < GetHash();
 }
 template<typename T>
-bool AnimTask<T>::operator==(const AnimTask<T>& anim_task) {
+bool Animation<T>::operator==(const Animation<T>& anim_task) {
     return anim_task.GetHash() == GetHash();
 }
 
 template<typename T>
-AnimTask<T>::AnimTask(T& value,
-                      T start_value,
-                      T end_value,
-                      double time_length,
-                      std::function<double(double)> InterpolFunction) {
+Animation<T>::Animation(T& value,
+                        T start_value,
+                        T end_value,
+                        double time_length,
+                        const std::function<double(double)>& InterpolFunction) {
     value_ = &value;
     start_value_ = start_value;
     end_value_ = end_value;
@@ -57,7 +57,7 @@ AnimTask<T>::AnimTask(T& value,
 }
 
 template<typename T>
-bool AnimTask<T>::Update(double delta_time) {
+bool Animation<T>::Update(double delta_time) {
     time_passed_ += delta_time;
     if (time_passed_ > time_length_) {
         *value_ = end_value_;
