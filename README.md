@@ -3,6 +3,30 @@ Lets do a collection!
 ***
 Build of last commit in main branch: [on dropbox](https://www.dropbox.com/sh/zzn6048h0n7gg5i/AAA5sE099mS7MMxqnawf9D7da?dl=0) 
 
+## How to build
+Program builds with CMake
+
+installing libraries on linux:
+    sudo apt install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+
+fast script to build and launch on linux (attention: it takes time):
+    
+    # dependencies
+    sudo apt install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+    # cloning
+    git clone https://github.com/Vaniog/SFML-Collection
+    cd SFML-Collection
+    # folder for building
+    mkdir build && cd build
+    # build and make
+    cmake .. -DCMAKE_BUILD_TYPE=Release
+    cmake --build . --config Release
+    # and launch
+    cd .. 
+    ./build/SFML-Collection
+
+You can do same on windows with cmake installed, and without installing libraries
+
 ## How to contribute
 [Example of contributing](#example-of-contributing) \
 To add your part to this project you just need to implement

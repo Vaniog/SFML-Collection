@@ -4,7 +4,10 @@
 
 #include <functional>
 
+class CustomIpExample;
+
 class IpSlider : public Scene {
+    friend CustomIpExample;
 public:
     explicit IpSlider(const std::function<double(double)>& IpFunction);
 
@@ -14,10 +17,12 @@ public:
 
     void SetPosition(float x, float y);
     void SetWidth(float width);
+    [[nodiscard]] float GetWidth() const;
+    [[nodiscard]] float GetCircleX() const;
 private:
     void FixSizes();
 
-    const std::function<double(double)> IpFunction_;
+    std::function<double(double)> IpFunction_;
     enum Direction { Left, Right };
     Direction direction_ = Right;
 
@@ -31,7 +36,7 @@ private:
 
     sf::CircleShape circle_;
     const float circle_radius_ = window_size_.y * 0.02f;
-    sf::Vector2f circle_pos_;
+    float circle_t_x_;
 
     sf::RectangleShape line_;
     const float line_thickness_ = window_size_.y * 0.005f;

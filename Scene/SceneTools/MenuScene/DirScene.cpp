@@ -38,12 +38,12 @@ void DirScene::OnEvent(sf::Event& event, const Timer& timer) {
         cover->OnEvent(event, timer);
     }
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Down) {
+        if (event.key.code == sf::Keyboard::Up) {
             Interpolator::AddAnim(Animation<float>(start_.y,
                                                    start_.y,
                                                    start_.y + cover_size_.y * (1 + padding_.y),
                                                    0.2));
-        } else if (event.key.code == sf::Keyboard::Up) {
+        } else if (event.key.code == sf::Keyboard::Down) {
             Interpolator::AddAnim(Animation<float>(start_.y,
                                                    start_.y,
                                                    start_.y - cover_size_.y * (1 + padding_.y),

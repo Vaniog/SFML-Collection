@@ -12,7 +12,7 @@ public:
               T start_value,
               T end_value,
               double time_length,
-              const std::function<double(double)>& InterpolFunction = IpFuncs::Ease);
+              const std::function<double(double)>& InterpolFunction = IpFuncs::EaseInOut);
 
     bool Update(double delta_time);
 

@@ -50,10 +50,11 @@ add_executable(${PROJECT_NAME} main.cpp
 
         # Interpolations
         Projects/Interpolations/IpField.cpp Projects/Interpolations/IpField.h
-        Projects/Interpolations/IpExample.cpp Projects/Interpolations/IpExample.h
         Projects/Interpolations/IpSlider.cpp Projects/Interpolations/IpSlider.h
         Projects/Interpolations/IpGraph.cpp Projects/Interpolations/IpGraph.h
-
+        Projects/Interpolations/IpExample.cpp Projects/Interpolations/IpExample.h
+        Projects/Interpolations/CustomIpExample.cpp Projects/Interpolations/CustomIpExample.cpp
+        Projects/Interpolations/DraggableCircle.cpp Projects/Interpolations/DraggableCircle.h
         )
 
 target_include_directories(${PROJECT_NAME} PRIVATE Scene Scene/SceneTools Scene/Animation)

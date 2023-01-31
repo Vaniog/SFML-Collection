@@ -4,7 +4,10 @@
 
 #include <memory>
 
+class CustomIpExample;
+
 class IpGraph : public Scene {
+    friend CustomIpExample;
 public:
     explicit IpGraph(const std::function<double(double)>& IpFunction);
 
@@ -14,12 +17,12 @@ public:
 
     void SetPosition(float x, float y);
     void SetWidth(float width);
-
+    [[nodiscard]] float GetWidth() const;
 private:
     void FixSizes();
     void CountGraph();
 
-    const std::function<double(double)> IpFunction_;
+    std::function<double(double)> IpFunction_;
 
     sf::Vector2f pos_;
     sf::Vector2f zero_pos_;
@@ -27,4 +30,5 @@ private:
 
     sf::VertexArray graph_line_;
     uint32_t graph_precision_ = 50;
+    sf::Transform graph_transform_;
 };

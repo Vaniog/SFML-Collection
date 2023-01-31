@@ -68,16 +68,16 @@ void DescriptionScene::Show() {
                                                 [](float t) {
                                                   if (t < 0.5)
                                                       return 0.0;
-                                                  return IpFuncs::EaseInOut(2 * t - 1);
+                                                  return IpFuncs::EaseInOutJS(2 * t - 1);
                                                 }));
     } else {
-        Interpolator::AddAnim(Animation<double>(alpha_, alpha_, 1, 0.25, IpFuncs::EaseInOut));
+        Interpolator::AddAnim(Animation<double>(alpha_, alpha_, 1, 0.25, IpFuncs::EaseInOutJS));
     }
     Interpolator::AddAnim(Animation<float>(scale_, scale_, 1, 0.5,
                                            [](float t) {
                                              if (t < 0.5)
                                                  return 0.0;
-                                             return IpFuncs::EaseInOut(2 * t - 1);
+                                             return IpFuncs::EaseInOutJS(2 * t - 1);
                                            }));
 }
 void DescriptionScene::Hide() {
@@ -85,7 +85,7 @@ void DescriptionScene::Hide() {
                                             [&](float t) {
                                               if (t < 0.5)
                                                   return 0.0;
-                                              return IpFuncs::EaseInOut(2 * t - 1);
+                                              return IpFuncs::EaseInOutJS(2 * t - 1);
                                             }));
     Interpolator::AddAnim(Animation<float>(scale_, scale_, 0.9, 0.3));
 }
