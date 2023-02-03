@@ -8,6 +8,7 @@ FetchContent_Declare(SFML
 FetchContent_MakeAvailable(SFML)
 
 if (WIN32)
+    set(SFML_STATIC_LIBRARIES TRUE)
     set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive")
 endif ()
