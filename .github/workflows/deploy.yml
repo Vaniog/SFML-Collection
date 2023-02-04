@@ -33,6 +33,7 @@ jobs:
           cxx: "g++"
           archiver: "7z a -r"
           generators: "Ninja"
+          cmake_add: ""
         
     steps:
     - uses: actions/checkout@v2
