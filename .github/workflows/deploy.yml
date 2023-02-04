@@ -22,7 +22,7 @@ jobs:
           cc: "gcc"
           cxx: "g++"
           archiver: "7z a -r"
-          generators: "Ninja"
+          generators: "Ninja -DBUILD_SHARED_LIBS=OFF"
           sfml_build: SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit
         - name: "Linux"
           os: ubuntu-latest
