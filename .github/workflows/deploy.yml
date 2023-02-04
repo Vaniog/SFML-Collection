@@ -23,7 +23,7 @@ jobs:
           cxx: "g++"
           archiver: "7z a -r"
           generators: "Ninja"
-          sfml_build: SFML-2.5.1-windows-gcc-7.3.0-mingw-64-bit
+          cmake_add: -DBUILD_SHARED_LIBS=OFF
         - name: "Linux"
           os: ubuntu-latest
           artifact: "sfmlc_linux.zip"
@@ -58,7 +58,8 @@ jobs:
           -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
           -G "${{ matrix.config.generators }}" \
           -DCMAKE_INSTALL_PREFIX:PATH=instdir \
-          -DBUILD_SHARED_LIBS=OFF
+          -DBUILD_SHARED_LIBS=OFF \
+          ${{ matrix.config.cmake_add }}
     
     - name: Build
       shell: bash
