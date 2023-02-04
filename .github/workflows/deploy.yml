@@ -33,7 +33,6 @@ jobs:
           cxx: "g++"
           archiver: "7z a -r"
           generators: "Ninja"
-          cmake_add: ""
         
     steps:
     - uses: actions/checkout@v2
@@ -59,7 +58,6 @@ jobs:
           -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
           -G "${{ matrix.config.generators }}" \
           -DCMAKE_INSTALL_PREFIX:PATH=instdir \
-          -DBUILD_SHARED_LIBS=OFF \
           ${{ matrix.config.cmake_add }}
     
     - name: Build
