@@ -1,28 +1,29 @@
 cmake_minimum_required(VERSION 3.20)
-project(SFML-Collection)
+project(SFML-Collection LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+include(FetchContent)
+FetchContent_Declare(SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG 2.5.1)
+FetchContent_MakeAvailable(SFML)
 
 if (WIN32)
-    set(SFML_DIR "C:\\SFML\\lib\\cmake\\SFML")
-    set(SFML_STATIC_LIBRARIES TRUE)
-
+    option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
     set(CMAKE_CXX_STANDARD_LIBRARIES "-static-libgcc -static-libstdc++")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,-Bstatic,--whole-archive -lwinpthread -Wl,--no-whole-archive")
-endif (WIN32)
-
-find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
-
-include_directories(Scene Scene/SceneTools Scene/Animation)
+endif ()
 
 add_executable(${PROJECT_NAME} main.cpp
         Scene/Scene.cpp
         Scene/SceneTools/SceneCollection.cpp
+        Scene/SceneTools/Timer.cpp
         Scene/SceneTools/MenuScene/DirScene.cpp
         Scene/SceneTools/MenuScene/MenuScene.cpp
         Scene/SceneTools/MenuScene/ProjectCover.cpp
-        Scene/SceneTools/Timer.cpp
+        Scene/SceneTools/MenuScene/DescriptionScene.cpp
+
         Scene/Animation/Interpolator.cpp
+        Scene/Animation/IpFuncs.cpp
 
         Projects/GetSceneByName.h
 
@@ -50,8 +51,15 @@ add_executable(${PROJECT_NAME} main.cpp
         # boids
         Projects/boids/boids.cpp Projects/boids/boids.h
 
-        Scene/Animation/InterpolFunctions.h Scene/SceneTools/MenuScene/DescriptionScene.cpp Scene/SceneTools/MenuScene/DescriptionScene.h
+        # Interpolations
+        Projects/Interpolations/IpField.cpp Projects/Interpolations/IpField.h
+        Projects/Interpolations/IpSlider.cpp Projects/Interpolations/IpSlider.h
+        Projects/Interpolations/IpGraph.cpp Projects/Interpolations/IpGraph.h
+        Projects/Interpolations/IpExample.cpp Projects/Interpolations/IpExample.h
+        Projects/Interpolations/CustomIpExample.cpp Projects/Interpolations/CustomIpExample.cpp
+        Projects/Interpolations/DraggableCircle.cpp Projects/Interpolations/DraggableCircle.h
         )
 
-
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-audio)
+target_include_directories(${PROJECT_NAME} PRIVATE Scene Scene/SceneTools Scene/Animation)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics sfml-audio)
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)

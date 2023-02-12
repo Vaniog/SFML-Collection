@@ -8,15 +8,15 @@ void Interpolator::Update(double delta_time) {
     for (auto& task : instance.tasks_) {
         bool success;
         uint32_t hash;
-        if (std::holds_alternative<AnimTask<int>>(task.second)) {
-            success = std::get<AnimTask<int>>(task.second).Update(delta_time);
-            hash = std::get<AnimTask<int>>(task.second).GetHash();
-        } else if (std::holds_alternative<AnimTask<float>>(task.second)) {
-            success = std::get<AnimTask<float>>(task.second).Update(delta_time);
-            hash = std::get<AnimTask<float>>(task.second).GetHash();
-        } else if (std::holds_alternative<AnimTask<double>>(task.second)) {
-            success = std::get<AnimTask<double>>(task.second).Update(delta_time);
-            hash = std::get<AnimTask<double>>(task.second).GetHash();
+        if (std::holds_alternative<Animation<int>>(task.second)) {
+            success = std::get<Animation<int>>(task.second).Update(delta_time);
+            hash = std::get<Animation<int>>(task.second).GetHash();
+        } else if (std::holds_alternative<Animation<float>>(task.second)) {
+            success = std::get<Animation<float>>(task.second).Update(delta_time);
+            hash = std::get<Animation<float>>(task.second).GetHash();
+        } else if (std::holds_alternative<Animation<double>>(task.second)) {
+            success = std::get<Animation<double>>(task.second).Update(delta_time);
+            hash = std::get<Animation<double>>(task.second).GetHash();
         } else {
             throw std::runtime_error("You broke interpolator");
         }

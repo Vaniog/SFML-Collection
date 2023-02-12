@@ -35,17 +35,12 @@ jobs:
       shell: bash
       run: |
         choco install ninja cmake
-        curl https://github.com/SFML/SFML/releases/download/2.5.1/${{ matrix.config.sfml_build }}.zip \
-          --remote-name --location --remote-header-name --insecure
-        
-        7z x ${{ matrix.config.sfml_build }}.zip
-        rm ${{ matrix.config.sfml_build }}.zip
-        mv SFML-2.5.1 C:\\SFML
         
     - name: Install dependecies on linux
       if: startsWith(matrix.config.os, 'ubuntu')
       run: |
-        sudo apt-get install ninja-build libsfml-dev
+        sudo apt update
+        sudo apt install ninja-build libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
     
     - name: Configure
       shell: bash

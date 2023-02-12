@@ -8,10 +8,12 @@ namespace fs = std::filesystem;
 class DescriptionScene : Scene {
 
 public:
-    explicit DescriptionScene(const fs::path& proj_path);
+    explicit DescriptionScene();
     void OnDraw(sf::RenderWindow& window) override;
     void OnFrame(const Timer& timer) override;
     void OnEvent(sf::Event& event, const Timer& timer) override;
+
+    void SetDescriptionFrom(const fs::path& proj_path);
 
     void Show();
     void Hide();

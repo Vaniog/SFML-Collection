@@ -8,6 +8,8 @@
 #include "domain_warping/domain_warping.h"
 #include "blob/blob.h"
 #include "boids/boids.h"
+#include "Interpolations/IpField.h"
+
 #include <memory>
 #include <stdexcept>
 
@@ -26,8 +28,10 @@ std::shared_ptr<Scene> GetSceneByName(const std::string& scene_name) {
         return std::shared_ptr<Scene>(new domain_warping());
     } else if (scene_name == "blob"){
         return std::shared_ptr<Scene>(new blob());
-    }else if (scene_name == "boids"){
+    } else if (scene_name == "boids"){
         return std::shared_ptr<Scene>(new boids());
+    } else if (scene_name == "Interpolations"){
+        return std::shared_ptr<Scene>(new IpField());
     }
 
     throw (std::runtime_error("You didn't add your scene to Projects/GetSceneByName"));

@@ -1,0 +1,4 @@
+Examples of different interpolations
+Scroll with arrows or with mouse scrolling
+
+Scroll to the end and try custom interpolation
