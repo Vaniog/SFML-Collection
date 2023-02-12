@@ -1,0 +1,5 @@
+deforming a circle with noise
+
+Right-Left control speed
+Up-Down contorl resolution
+A-D control deformation amount

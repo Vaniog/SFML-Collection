@@ -48,6 +48,9 @@ add_executable(${PROJECT_NAME} main.cpp
         # blob
         Projects/blob/blob.cpp Projects/blob/blob.h
 
+        # boids
+        Projects/boids/boids.cpp Projects/boids/boids.h
+
         # Interpolations
         Projects/Interpolations/IpField.cpp Projects/Interpolations/IpField.h
         Projects/Interpolations/IpSlider.cpp Projects/Interpolations/IpSlider.h
